@@ -1,23 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
 
 function App() {
+  const [val, setVal] = useState(0);
+  const [incrementVal, setIncrementVal] = useState(0);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "column",
+      }}
+    >
+      <h1> {val}</h1>
+      <div>
+        <button
+          style={{ marginRight: "1rem" }}
+          onClick={() =>
+            setVal((val) => val - Number(incrementVal > 0 ? incrementVal : 1))
+          }
         >
-          Learn React
-        </a>
-      </header>
+          {" "}
+          -{" "}
+        </button>
+        <button
+          onClick={() =>
+            setVal((val) => val + Number(incrementVal > 0 ? incrementVal : 1))
+          }
+        >
+          {" "}
+          +{" "}
+        </button>
+      </div>
+      <p>
+        {" "}
+        Increment / decrement by{" "}
+        <input
+          value={incrementVal}
+          onChange={(e) => setIncrementVal(e.target.value)}
+        />
+      </p>
+      <button onClick={() => setVal(0)}>Reset </button>
     </div>
   );
 }
