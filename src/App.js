@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import ParentComponent from "./components/parent/ParentComponent";
+import { useState } from "react";
 
 function App() {
+  const [ParentTheme, setParentTheme] = useState("light");
+  const handleParentChange = () => {
+    setParentTheme((prev) => (prev === "light" ? "dark" : "light"));
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={ParentTheme === "light" ? "parent" : "parentDark"}>
+      <ParentComponent
+        handleParentChangeFromApp={handleParentChange}
+        ParentTheme={ParentTheme}
+      />
     </div>
   );
 }
